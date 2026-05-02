@@ -12,7 +12,6 @@ from app_core.config import (
     DEFAULT_STORY_WORDS,
     MAX_STORY_WORDS,
     MIN_STORY_WORDS,
-    SPEED_OPTIONS,
     SUPPORTED_FILE_TYPES,
 )
 
@@ -97,9 +96,9 @@ def render_intro() -> None:
         f"""
         <div class="hero-card">
           <div class="hero-badges">
-            <span class="hero-badge">🌈 Kid-Friendly</span>
-            <span class="hero-badge">📖 Story + Title</span>
-            <span class="hero-badge">🔊 Read-Aloud Audio</span>
+            <span class="hero-badge">&#127752; Kid-Friendly</span>
+            <span class="hero-badge">&#128214; Story + Title</span>
+            <span class="hero-badge">&#128266; Read-Aloud Audio</span>
           </div>
           <div class="hero-title">{APP_TITLE}</div>
           <p class="hero-text">{APP_TAGLINE}</p>
@@ -142,12 +141,6 @@ def render_sidebar_controls():
             "Optional child character name",
             placeholder="For example: Mia",
         )
-        default_speed = st.select_slider(
-            "Default audio speed",
-            options=SPEED_OPTIONS,
-            value=1.0,
-        )
-        st.caption("Models are loaded only when you click generate, which helps the first page feel lighter.")
 
     return {
         "input_mode": input_mode,
@@ -155,7 +148,6 @@ def render_sidebar_controls():
         "mood": mood,
         "word_target": word_target,
         "child_name": child_name,
-        "default_speed": default_speed,
     }
 
 
@@ -173,7 +165,14 @@ def render_image_input(input_mode: str):
 
 def render_result_header(image_title: str, caption: str) -> None:
     """Render the generated title and the caption summary."""
+    cleaned_caption = caption.strip()
+    if cleaned_caption:
+        cleaned_caption = cleaned_caption[0].upper() + cleaned_caption[1:]
+
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown(f'<div class="result-title">✨ {image_title}</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="soft-note">Uploaded image summary: {caption}</div>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div class="result-title">&#10024; {image_title}</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(f'<div class="soft-note">{cleaned_caption}</div>', unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)

@@ -31,7 +31,6 @@ def render_audio_story_player(
     title: str,
     story: str,
     wav_bytes: bytes,
-    default_speed: float,
 ) -> None:
     """Render a custom HTML player with speed controls and transcript highlighting.
 
@@ -140,7 +139,7 @@ def render_audio_story_player(
         buttonHost.appendChild(button);
       }});
 
-      setSpeed({default_speed});
+      setSpeed(1.0);
 
       function updateHighlight() {{
         if (!audio.duration || !wordNodes.length) return;

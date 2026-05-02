@@ -29,8 +29,7 @@ def main() -> None:
     if uploaded_file is None:
         st.stop()
 
-    st.image(uploaded_file, caption="Uploaded image", use_container_width=True)
-    st.caption("Tip: The first generation may take longer because the models need to warm up.")
+    st.image(uploaded_file, use_container_width=True)
 
     # Run the full multimedia pipeline only when the user clicks the main button.
     if st.button("Create story and audio", type="primary"):
@@ -55,16 +54,12 @@ def main() -> None:
                 wav_bytes = audio_array_to_wav_bytes(audio_array, sample_rate)
 
             render_result_header(image_title, caption)
-            st.subheader("Story")
-            st.write(story)
             st.caption(f"Story length: {len(story.split())} words")
-
-            st.subheader("Read-Aloud Player")
+            st.subheader("Story")
             render_audio_story_player(
                 title=image_title,
                 story=story,
                 wav_bytes=wav_bytes,
-                default_speed=controls["default_speed"],
             )
         except Exception as error:
             st.error(
