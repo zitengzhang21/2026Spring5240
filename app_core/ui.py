@@ -68,18 +68,18 @@ def apply_app_styles() -> None:
             margin-bottom: 0.2rem;
           }
           .section-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 24px;
-            padding: 1rem 1rem 1.2rem 1rem;
-            border: 1px solid rgba(255, 196, 108, 0.28);
-            box-shadow: 0 12px 30px rgba(44, 35, 19, 0.08);
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            border: none;
+            box-shadow: none;
           }
           .story-card {
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 24px;
-            padding: 1.15rem 1.15rem 1rem 1.15rem;
-            border: 1px solid rgba(255, 196, 108, 0.34);
-            box-shadow: 0 18px 42px rgba(44, 35, 19, 0.09);
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            border: none;
+            box-shadow: none;
           }
           .result-title {
             color: #8a4d00;
@@ -100,7 +100,7 @@ def apply_app_styles() -> None:
           .story-meta {
             color: #8a7b61;
             font-size: 0.95rem;
-            margin-top: 0.95rem;
+            margin-top: 0.2rem;
           }
         </style>
         """,

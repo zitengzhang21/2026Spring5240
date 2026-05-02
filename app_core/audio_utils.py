@@ -30,6 +30,7 @@ def audio_array_to_wav_bytes(audio_array, sample_rate: int) -> bytes:
 def render_audio_story_player(
     story: str,
     wav_bytes: bytes,
+    word_count: int,
 ) -> None:
     """Render a custom HTML player with speed controls and transcript highlighting.
 
@@ -52,6 +53,7 @@ def render_audio_story_player(
         <span class="speed-label">Speed:</span>
         <div id="speed-buttons" class="speed-buttons"></div>
       </div>
+      <div class="story-meta">Story length: {word_count} words</div>
     </div>
 
     <style>
@@ -66,7 +68,7 @@ def render_audio_story_player(
         display: flex;
         align-items: center;
         gap: 0.65rem;
-        margin: 0.85rem 0 0.2rem 0;
+        margin: 0.85rem 0 0.35rem 0;
         flex-wrap: wrap;
       }}
       .speed-label {{
@@ -96,6 +98,11 @@ def render_audio_story_player(
         font-size: 1.03rem;
         color: #3b2a15;
         margin-bottom: 0.9rem;
+      }}
+      .story-meta {{
+        color: #8a7b61;
+        font-size: 0.95rem;
+        margin-top: 0.15rem;
       }}
       .story-word {{
         transition: all 0.18s ease;

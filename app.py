@@ -58,14 +58,10 @@ def main() -> None:
 
             render_result_header(image_title, caption)
             open_story_card()
-            st.markdown(f'<div class="story-body">{story}</div>', unsafe_allow_html=True)
             render_audio_story_player(
                 story=story,
                 wav_bytes=wav_bytes,
-            )
-            st.markdown(
-                f'<div class="story-meta">Story length: {len(story.split())} words</div>',
-                unsafe_allow_html=True,
+                word_count=len(story.split()),
             )
             close_story_card()
         except Exception as error:
