@@ -19,6 +19,7 @@ from app_core.ui import (
 
 def main() -> None:
     # Page config must run before most Streamlit elements.
+    # Deployment note: keep this file touched when we need Streamlit Cloud to refresh.
     st.set_page_config(page_title=APP_TITLE, layout="centered")
     apply_app_styles()
     render_intro()
