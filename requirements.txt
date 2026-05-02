@@ -4,3 +4,4 @@ torch
 Pillow
 sentencepiece
 accelerate
+numpy
