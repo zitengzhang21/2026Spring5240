@@ -83,13 +83,14 @@ def apply_app_styles() -> None:
           }
           .result-title {
             color: #8a4d00;
-            font-size: 1.25rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 0.3rem;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
           }
           .soft-note {
             color: #75542b;
-            font-size: 0.94rem;
+            font-size: 1rem;
           }
           .story-body {
             color: #3b2a15;

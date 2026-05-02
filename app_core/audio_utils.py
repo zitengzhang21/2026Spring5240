@@ -58,17 +58,17 @@ def render_audio_story_player(
 
     <style>
       .storybook-player {{
-        background: transparent;
-        border-radius: 0;
-        padding: 0;
-        border: none;
-        box-shadow: none;
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 24px;
+        padding: 1.2rem 1.25rem 1rem 1.25rem;
+        border: 1px solid rgba(255, 196, 108, 0.35);
+        box-shadow: 0 18px 42px rgba(44, 35, 19, 0.09);
       }}
       .speed-row {{
         display: flex;
         align-items: center;
         gap: 0.65rem;
-        margin: 0.85rem 0 0.35rem 0;
+        margin: 0.85rem 0 0.45rem 0;
         flex-wrap: wrap;
       }}
       .speed-label {{
@@ -102,7 +102,8 @@ def render_audio_story_player(
       .story-meta {{
         color: #8a7b61;
         font-size: 0.95rem;
-        margin-top: 0.15rem;
+        margin-top: 0.25rem;
+        text-align: right;
       }}
       .story-word {{
         transition: all 0.18s ease;
