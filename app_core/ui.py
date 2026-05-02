@@ -74,6 +74,13 @@ def apply_app_styles() -> None:
             border: 1px solid rgba(255, 196, 108, 0.28);
             box-shadow: 0 12px 30px rgba(44, 35, 19, 0.08);
           }
+          .story-card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            padding: 1.15rem 1.15rem 1rem 1.15rem;
+            border: 1px solid rgba(255, 196, 108, 0.34);
+            box-shadow: 0 18px 42px rgba(44, 35, 19, 0.09);
+          }
           .result-title {
             color: #8a4d00;
             font-size: 1.25rem;
@@ -83,6 +90,17 @@ def apply_app_styles() -> None:
           .soft-note {
             color: #75542b;
             font-size: 0.94rem;
+          }
+          .story-body {
+            color: #3b2a15;
+            font-size: 1.04rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+          }
+          .story-meta {
+            color: #8a7b61;
+            font-size: 0.95rem;
+            margin-top: 0.95rem;
           }
         </style>
         """,
@@ -175,4 +193,14 @@ def render_result_header(image_title: str, caption: str) -> None:
         unsafe_allow_html=True,
     )
     st.markdown(f'<div class="soft-note">{cleaned_caption}</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
+
+
+def open_story_card() -> None:
+    """Open the main story result container."""
+    st.markdown('<div class="story-card">', unsafe_allow_html=True)
+
+
+def close_story_card() -> None:
+    """Close the main story result container."""
     st.markdown("</div>", unsafe_allow_html=True)

@@ -28,7 +28,6 @@ def audio_array_to_wav_bytes(audio_array, sample_rate: int) -> bytes:
 
 
 def render_audio_story_player(
-    title: str,
     story: str,
     wav_bytes: bytes,
 ) -> None:
@@ -45,7 +44,7 @@ def render_audio_story_player(
 
     html_block = f"""
     <div class="storybook-player">
-      <div class="player-title">{html.escape(title)}</div>
+      <div id="story-text" class="story-text">{words_html}</div>
       <audio id="story-audio" controls preload="metadata">
         <source src="data:audio/wav;base64,{audio_base64}" type="audio/wav">
       </audio>
@@ -53,28 +52,21 @@ def render_audio_story_player(
         <span class="speed-label">Speed:</span>
         <div id="speed-buttons" class="speed-buttons"></div>
       </div>
-      <div id="story-text" class="story-text">{words_html}</div>
     </div>
 
     <style>
       .storybook-player {{
-        background: rgba(255, 255, 255, 0.92);
-        border-radius: 22px;
-        padding: 1rem 1rem 1.25rem 1rem;
-        border: 1px solid rgba(255, 180, 90, 0.35);
-        box-shadow: 0 18px 45px rgba(44, 35, 19, 0.12);
-      }}
-      .player-title {{
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #8d4e00;
-        margin-bottom: 0.75rem;
+        background: transparent;
+        border-radius: 0;
+        padding: 0;
+        border: none;
+        box-shadow: none;
       }}
       .speed-row {{
         display: flex;
         align-items: center;
         gap: 0.65rem;
-        margin: 0.8rem 0 1rem 0;
+        margin: 0.85rem 0 0.2rem 0;
         flex-wrap: wrap;
       }}
       .speed-label {{
@@ -103,6 +95,7 @@ def render_audio_story_player(
         line-height: 2.05;
         font-size: 1.03rem;
         color: #3b2a15;
+        margin-bottom: 0.9rem;
       }}
       .story-word {{
         transition: all 0.18s ease;

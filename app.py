@@ -10,6 +10,8 @@ from app_core.pipelines import (
 from app_core.story_utils import generate_image_title
 from app_core.ui import (
     apply_app_styles,
+    close_story_card,
+    open_story_card,
     render_image_input,
     render_intro,
     render_result_header,
@@ -55,13 +57,17 @@ def main() -> None:
                 wav_bytes = audio_array_to_wav_bytes(audio_array, sample_rate)
 
             render_result_header(image_title, caption)
-            st.caption(f"Story length: {len(story.split())} words")
-            st.subheader("Story")
+            open_story_card()
+            st.markdown(f'<div class="story-body">{story}</div>', unsafe_allow_html=True)
             render_audio_story_player(
-                title=image_title,
                 story=story,
                 wav_bytes=wav_bytes,
             )
+            st.markdown(
+                f'<div class="story-meta">Story length: {len(story.split())} words</div>',
+                unsafe_allow_html=True,
+            )
+            close_story_card()
         except Exception as error:
             st.error(
                 "Something went wrong while generating the story or audio. "
