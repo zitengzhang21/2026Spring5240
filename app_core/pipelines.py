@@ -5,10 +5,12 @@ All heavy Hugging Face pipelines live here so the UI layer stays focused on flow
 
 from __future__ import annotations
 
+import re
 import tempfile
 from pathlib import Path
 from typing import Tuple
 
+import numpy as np
 import streamlit as st
 from transformers import pipeline
 
@@ -84,7 +86,38 @@ def generate_story_from_caption(
 
 
 def generate_audio(story: str) -> Tuple[object, int]:
-    """Convert the finished story into speech."""
+    """Convert the finished story into speech.
+
+    To make the narration sound more natural, this function splits the story into
+    sentences, generates audio for each sentence, and inserts a short silence
+    between them before joining everything back together.
+    """
     audio_pipeline = load_audio_pipeline()
-    audio_result = audio_pipeline(story)
-    return audio_result["audio"], audio_result["sampling_rate"]
+    sentences = [
+        sentence.strip()
+        for sentence in re.split(r"(?<=[.!?])\s+", story.strip())
+        if sentence.strip()
+    ]
+    if not sentences:
+        sentences = [story.strip()]
+
+    audio_segments = []
+    sample_rate = None
+    silence = None
+
+    for index, sentence in enumerate(sentences):
+        audio_result = audio_pipeline(sentence)
+        current_rate = audio_result["sampling_rate"]
+        current_audio = np.array(audio_result["audio"]).squeeze().astype(np.float32)
+
+        if sample_rate is None:
+            sample_rate = current_rate
+            silence_length = int(sample_rate * 0.5)
+            silence = np.zeros(silence_length, dtype=np.float32)
+
+        audio_segments.append(current_audio)
+        if index < len(sentences) - 1 and silence is not None:
+            audio_segments.append(silence)
+
+    combined_audio = np.concatenate(audio_segments)
+    return combined_audio, sample_rate
