@@ -112,7 +112,7 @@ def generate_audio(story: str) -> Tuple[object, int]:
 
         if sample_rate is None:
             sample_rate = current_rate
-            silence_length = int(sample_rate * 0.5)
+            silence_length = int(sample_rate * 0.3)
             silence = np.zeros(silence_length, dtype=np.float32)
 
         audio_segments.append(current_audio)
