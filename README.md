@@ -1,6 +1,6 @@
 # Story Garden
 
-Story Garden is an interactive Streamlit application developed for the ISOM5240 assignment.  
+Story Garden is an interactive Streamlit application built for young children.  
 It turns a child-friendly image into a short title, a warm mini story for children aged 3 to 5, and a read-aloud audio version.
 
 ## Project Goal
@@ -10,7 +10,7 @@ The goal of this project is to build a multimodal storytelling app that:
 - understands an uploaded image
 - creates a simple and safe children's story
 - converts the story into speech
-- provides a playful and easy-to-use interface
+- provides a playful and easy-to-use interface for children and parents
 
 This app is designed around the needs of young children, so the generated story is short, gentle, and easy to follow.
 
@@ -19,7 +19,7 @@ This app is designed around the needs of young children, so the generated story 
 - Upload an image from the computer
 - Take a photo directly with the camera
 - Generate an image caption automatically
-- Generate a short story in simple English for ages 3 to 5
+- Generate a short story in simple English for children aged 3 to 5
 - Control story style through lesson theme and mood
 - Generate a short title based on the uploaded image
 - Convert the story into read-aloud audio
@@ -31,7 +31,7 @@ This app is designed around the needs of young children, so the generated story 
 
 - Streamlit Cloud URL: [Story Garden](https://2026spring5240-jhwpdi3ygb9suxcgvfpram.streamlit.app)
 
-If the deployment URL changes after a redeploy, update this section before final submission.
+If the deployment URL changes after a redeploy, update this section before sharing the project.
 
 ## Tech Stack
 
@@ -111,32 +111,32 @@ streamlit run app.py
 
 ## Design Notes
 
-- The story is intentionally kept short to fit the assignment requirement and the attention span of young children.
+- The story is intentionally kept short to match the attention span of young children.
 - The prompt design focuses on child-safe language, simple structure, and positive emotional tone.
 - The code is split into multiple modules to improve readability, modularity, and maintainability.
 - The text-to-speech pipeline inserts short pauses between sentences so the narration sounds more natural.
 
-## Assignment Submission
+## Project Packaging
 
-Because this project uses multiple Python files, the final submission should not include only `app.py`.  
+Because this project uses multiple Python files, it should not be shared with only `app.py`.  
 To run correctly, the project also needs the supporting files inside `app_core`.
 
-### Required Files
+### Core Files
 
 - `app.py`
 - `requirements.txt`
 - full `app_core/` folder
 - Streamlit Cloud URL
 
-### Recommended Files
+### Recommended File
 
 - `README.md`
 
-If your instructor asks for a source-code package or zip file, include all of the files above in the same project folder.
+If you package the project as source code or a zip file, include all of the files above in the same project folder.
 
-## Final Submission Checklist
+## Deployment Checklist
 
-Before submitting the assignment, make sure:
+Before sharing or deploying the project, make sure:
 
 - `app.py` is included
 - `requirements.txt` is included
@@ -157,13 +157,13 @@ Before submitting the assignment, make sure:
 
 ## Final Notes
 
-This project was built to satisfy both the technical and user-experience sides of the assignment:
+This project was built to balance both technical quality and user experience:
 
-- modular code structure
+- modular code structure for easier development
 - clear code comments
 - a working Streamlit interface
 - image-to-text generation
 - text-to-story generation
 - story-to-audio generation
 
-The current version is suitable as a course project submission and can be further extended with quiz features, vocabulary cards, or more interactive storytelling options in the future.
+The current version is suitable as a polished storytelling prototype and can be further extended with quiz features, vocabulary cards, or more interactive storytelling options in the future.
