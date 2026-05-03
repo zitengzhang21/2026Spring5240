@@ -167,4 +167,5 @@ This project was built to balance both technical quality and user experience:
 - story-to-audio generation
 
 The current version is suitable as a polished storytelling prototype and can be further extended with quiz features, vocabulary cards, or more interactive storytelling options in the future.
+
 *Codex was used to assist in the development of this webpage, primarily to create the sidebar on the left and implement text segmentation, thereby enhancing the app's functionality.
