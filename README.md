@@ -1,24 +1,52 @@
-## Story Garden
+# Story Garden
 
-Story Garden is a Streamlit app that turns a child-friendly image into:
+Story Garden is an interactive Streamlit application developed for the ISOM5240 assignment.  
+It turns a child-friendly image into a short title, a warm mini story for children aged 3 to 5, and a read-aloud audio version.
 
-- a short title
-- a mini story for ages 3 to 5
-- a read-aloud audio version
+## Project Goal
 
-The app is designed for the ISOM5240 assignment and focuses on a simple user flow, modular code structure, and a child-safe storytelling style.
+The goal of this project is to build a multimodal storytelling app that:
 
-## Features
+- understands an uploaded image
+- creates a simple and safe children's story
+- converts the story into speech
+- provides a playful and easy-to-use interface
 
-- Upload an image or take a photo with the camera
+This app is designed around the needs of young children, so the generated story is short, gentle, and easy to follow.
+
+## Main Features
+
+- Upload an image from the computer
+- Take a photo directly with the camera
 - Generate an image caption automatically
-- Turn the caption into a 50-100 word children's story
-- Choose a lesson theme such as kindness, sharing, curiosity, courage, or friendship
-- Choose a story mood such as playful, gentle, funny, calm, or bedtime
-- Generate read-aloud audio from the story
-- Insert short pauses between sentences so the narration sounds more natural
-- Highlight the approximate current word while the audio is playing
-- Control playback speed with 0.5x, 1x, 1.5x, and 2x buttons
+- Generate a short story in simple English for ages 3 to 5
+- Control story style through lesson theme and mood
+- Generate a short title based on the uploaded image
+- Convert the story into read-aloud audio
+- Add natural pauses between sentences in the audio
+- Highlight the approximate current word during playback
+- Change playback speed with built-in speed buttons
+
+## Live App
+
+- Streamlit Cloud URL: [Story Garden](https://2026spring5240-jhwpdi3ygb9suxcgvfpram.streamlit.app)
+
+If the deployment URL changes after a redeploy, update this section before final submission.
+
+## Tech Stack
+
+- Python 3.11
+- Streamlit
+- Hugging Face Transformers
+- PyTorch
+- NumPy
+- Pillow
+
+## Models Used
+
+- Image Captioning: `Salesforce/blip-image-captioning-base`
+- Story Generation: `google/flan-t5-small`
+- Text-to-Speech: `Matthijs/mms-tts-eng`
 
 ## Project Structure
 
@@ -27,6 +55,7 @@ The app is designed for the ISOM5240 assignment and focuses on a simple user flo
 |- app.py
 |- requirements.txt
 |- README.md
+|- SUBMISSION_CHECKLIST.md
 |- app_core/
 |  |- __init__.py
 |  |- audio_utils.py
@@ -36,82 +65,86 @@ The app is designed for the ISOM5240 assignment and focuses on a simple user flo
 |  |- ui.py
 ```
 
-## Main Files
+## File Description
 
-- `app.py`: Streamlit entry point and top-level app flow
-- `app_core/config.py`: shared settings such as model names and word limits
-- `app_core/pipelines.py`: image captioning, story generation, audio generation, and file handling
-- `app_core/story_utils.py`: prompt design, story cleanup, fallback story logic, and title generation
-- `app_core/audio_utils.py`: WAV conversion and custom audio player with transcript highlighting
-- `app_core/ui.py`: sidebar controls, page layout, and custom styles
+- `app.py`
+  Main Streamlit entry point. It controls the top-level workflow from image input to final story and audio output.
 
-## Models Used
+- `app_core/config.py`
+  Stores shared configuration values such as model names, supported file types, and story length limits.
 
-- Image captioning: `Salesforce/blip-image-captioning-base`
-- Story generation: `google/flan-t5-small`
-- Text-to-speech: `Matthijs/mms-tts-eng`
+- `app_core/pipelines.py`
+  Handles model loading, image caption generation, story generation, temporary file saving, and text-to-speech generation.
 
-## Requirements
+- `app_core/story_utils.py`
+  Contains prompt design, output cleanup, fallback story logic, and image title generation.
 
-- Python 3.11 recommended
-- Streamlit
-- Transformers
-- Torch
-- Pillow
-- SentencePiece
-- Accelerate
-- NumPy
+- `app_core/audio_utils.py`
+  Converts generated audio into WAV format and renders the custom audio player with transcript highlighting.
 
-Install dependencies with:
+- `app_core/ui.py`
+  Contains the Streamlit layout, styles, sidebar controls, and result section helpers.
+
+## How to Run Locally
+
+1. Install Python 3.11.
+2. Install the required packages:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Run the App Locally
+3. Start the Streamlit app:
 
 ```bash
 streamlit run app.py
 ```
 
-After the app opens in the browser:
+## How to Use the App
 
 1. Upload an image or take a photo.
-2. Choose a lesson theme and story mood.
-3. Adjust the target story length if needed.
-4. Click `Create story and audio`.
+2. Select a lesson theme.
+3. Select a story mood.
+4. Adjust the target story length if needed.
+5. Optionally enter a child character name.
+6. Click `Create story and audio`.
+7. Read the story and play the generated audio.
 
-## Deployment
+## Design Notes
 
-This project is intended to be deployed on Streamlit Cloud.
+- The story is intentionally kept short to fit the assignment requirement and the attention span of young children.
+- The prompt design focuses on child-safe language, simple structure, and positive emotional tone.
+- The code is split into multiple modules to improve readability, modularity, and maintainability.
+- The text-to-speech pipeline inserts short pauses between sentences so the narration sounds more natural.
 
-Recommended deployment settings:
+## Assignment Submission
 
-- Repository: your GitHub repository
-- Branch: `main`
-- Main file path: `app.py`
+Because this project uses multiple Python files, the final submission should not include only `app.py`.  
+To run correctly, the project also needs the supporting files inside `app_core`.
 
-## Notes for the Assignment
-
-This project was organized into multiple Python files for better readability and modularity. Because of that, the app does not rely on `app.py` alone. The `app_core` folder is also required for the application to run correctly.
-
-## What to Submit
-
-For the assignment, the safe submission package should include:
+### Required Files
 
 - `app.py`
 - `requirements.txt`
-- the full `app_core/` folder
+- full `app_core/` folder
+- Streamlit Cloud URL
+
+### Recommended Files
+
 - `README.md`
-- the Streamlit Cloud URL
+- `SUBMISSION_CHECKLIST.md`
 
-If your instructor asks for a zip file or source package, include all source files above in the same project folder.
+If your instructor asks for a source-code package or zip file, include all of the files above in the same project folder.
 
-## Suggested Final Submission Checklist
+## Final Notes
 
-- The app runs locally without errors
-- The app is deployed successfully on Streamlit Cloud
-- The Streamlit link is accessible
-- All required Python files are included
-- `requirements.txt` is up to date
-- `README.md` explains the project clearly
+This project was built to satisfy both the technical and user-experience sides of the assignment:
+
+- modular code structure
+- clear code comments
+- a working Streamlit interface
+- image-to-text generation
+- text-to-story generation
+- story-to-audio generation
+
+The current version is suitable as a course project submission and can be further extended with quiz features, vocabulary cards, or more interactive storytelling options in the future.
