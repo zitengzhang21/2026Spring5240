@@ -33,6 +33,10 @@ This app is designed around the needs of young children, so the generated story 
 
 If the deployment URL changes after a redeploy, update this section before sharing the project.
 
+## App Preview
+
+![Story Garden home screen](docs/readme-home.png)
+
 ## Tech Stack
 
 - Python 3.11
