@@ -67,6 +67,8 @@ def generate_story_from_caption(
 ) -> str:
     """Generate a child-friendly story and fall back if the model output is weak."""
     story_pipeline = load_story_pipeline()
+
+    # Build one prompt that controls age level, mood, lesson theme, and length.
     prompt = build_story_prompt(caption, lesson_theme, mood, word_target, child_name)
     result = story_pipeline(
         prompt,
@@ -77,8 +79,11 @@ def generate_story_from_caption(
         top_p=0.95,
     )
 
+    # Clean the model output first, then enforce the word limit for the assignment.
     story = normalize_story(result[0]["generated_text"])
     story = trim_story_to_limit(story, max_words=max_words)
+
+    # If the model echoes instructions or produces weak text, switch to a safe backup story.
     if not is_valid_story(story):
         story = build_fallback_story(caption, lesson_theme, child_name)
         story = trim_story_to_limit(story, max_words=max_words)
@@ -112,6 +117,7 @@ def generate_audio(story: str) -> Tuple[object, int]:
 
         if sample_rate is None:
             sample_rate = current_rate
+            # Adjust this multiplier if you want shorter or longer pauses between sentences.
             silence_length = int(sample_rate * 0.3)
             silence = np.zeros(silence_length, dtype=np.float32)
 

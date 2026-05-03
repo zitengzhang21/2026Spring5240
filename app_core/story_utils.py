@@ -18,6 +18,7 @@ def build_story_prompt(
     child_name: str,
 ) -> str:
     """Build a short, instruction-focused prompt for the story model."""
+    # Add the optional child name only when the user provides one.
     child_part = (
         f"The main child character is named {child_name}. " if child_name.strip() else ""
     )
@@ -104,6 +105,7 @@ def is_valid_story(story: str) -> bool:
 
 def generate_image_title(caption: str, lesson_theme: str) -> str:
     """Turn the caption into a short title for the uploaded image/story card."""
+    # Remove very common filler words so the title focuses on key image objects.
     stop_words = {
         "a",
         "an",
