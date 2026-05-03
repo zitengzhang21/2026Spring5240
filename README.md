@@ -55,7 +55,6 @@ If the deployment URL changes after a redeploy, update this section before final
 |- app.py
 |- requirements.txt
 |- README.md
-|- SUBMISSION_CHECKLIST.md
 |- app_core/
 |  |- __init__.py
 |  |- audio_utils.py
@@ -132,9 +131,29 @@ To run correctly, the project also needs the supporting files inside `app_core`.
 ### Recommended Files
 
 - `README.md`
-- `SUBMISSION_CHECKLIST.md`
 
 If your instructor asks for a source-code package or zip file, include all of the files above in the same project folder.
+
+## Final Submission Checklist
+
+Before submitting the assignment, make sure:
+
+- `app.py` is included
+- `requirements.txt` is included
+- the full `app_core/` folder is included
+- the Streamlit Cloud URL is provided
+- the app opens successfully
+- image upload works
+- camera input works
+- image caption generation works
+- story generation works
+- audio generation works
+- audio playback works
+- the story is suitable for children aged 3 to 5
+- the story uses simple and child-friendly language
+- the story length stays within the assignment target range
+- the app is deployed correctly on Streamlit Cloud
+- the main file path is set to `app.py`
 
 ## Final Notes
 
